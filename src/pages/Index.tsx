@@ -6,6 +6,7 @@ import GallerySection from "@/components/GallerySection";
 import MenuSection from "@/components/MenuSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import MidnightShift from "@/components/MidnightShift";
 
 const Index = () => {
   return (
@@ -14,9 +15,11 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
       <ExperienceSection />
-      <GallerySection />
-      <MenuSection />
-      <ContactSection />
+      <MidnightShift>
+        <GallerySection />
+        <MenuSection />
+        <ContactSection />
+      </MidnightShift>
       <Footer />
     </div>
   );
