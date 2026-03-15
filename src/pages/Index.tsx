@@ -6,8 +6,10 @@ import GallerySection from "@/components/GallerySection";
 import MenuSection from "@/components/MenuSection";
 import OrderOnlineSection from "@/components/OrderOnlineSection";
 import ContactSection from "@/components/ContactSection";
+import InstagramFeed from "@/components/InstagramFeed";
 import Footer from "@/components/Footer";
 import MidnightShift from "@/components/MidnightShift";
+import FloatingReservation from "@/components/FloatingReservation";
 
 const Index = () => {
   return (
@@ -20,9 +22,11 @@ const Index = () => {
         <GallerySection />
         <MenuSection />
         <OrderOnlineSection />
+        <InstagramFeed />
         <ContactSection />
       </MidnightShift>
       <Footer />
+      <FloatingReservation />
     </div>
   );
 };
