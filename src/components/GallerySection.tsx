@@ -36,7 +36,7 @@ const floatVariants = {
     transition: {
       duration: 6 + (i % 3),
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   }),
 };
