@@ -133,6 +133,17 @@
     @apply w-12 h-px bg-primary;
   }
 
+  /* Gallery parallelogram clip */
+  .gallery-parallelogram {
+    clip-path: polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%);
+  }
+
+  @media (max-width: 768px) {
+    .gallery-parallelogram {
+      clip-path: polygon(1% 0%, 100% 0%, 99% 100%, 0% 100%);
+    }
+  }
+
   /* Scroll indicator animation */
   @keyframes scroll-bounce {
     0%, 100% { transform: translateY(0); }
