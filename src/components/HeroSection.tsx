@@ -30,7 +30,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="font-label text-xs text-primary mb-6 tracking-[0.2em]"
         >
-          Ngong Road, Nairobi
+          671 Ngong Road, Piedmont Plaza, Nairobi
         </motion.p>
 
         <motion.h1

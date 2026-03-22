@@ -32,7 +32,7 @@ const ContactSection = () => {
               <div>
                 <h3 className="font-bold mb-1">Address</h3>
                 <a
-                  href="https://maps.google.com/?q=Piedmont+Plaza+671+Ngong+Road+Nairobi+Kenya"
+                  href="https://maps.app.goo.gl/9oHgW6eNPgnQJowd7"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
@@ -61,9 +61,7 @@ const ContactSection = () => {
               <div>
                 <h3 className="font-bold mb-1">Opening Hours</h3>
                 <div className="text-muted-foreground text-sm space-y-1">
-                  <p>Monday – Thursday: 11:00 AM – 12:00 AM</p>
-                  <p>Friday – Saturday: 11:00 AM – 3:00 AM</p>
-                  <p>Sunday: 12:00 PM – 11:00 PM</p>
+                  <p>Daily : 08:00 AM – 03:00 AM</p>
                 </div>
               </div>
             </div>
@@ -78,7 +76,7 @@ const ContactSection = () => {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  @b52bistro
+                  @b52_bistro
                 </a>
               </div>
             </div>

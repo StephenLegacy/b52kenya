@@ -13,13 +13,13 @@ import galleryNightlife from "@/assets/gallery-nightlife.jpg";
 
 const images = [
   { src: galleryEntrance,   alt: "B52 Entrance at night",      category: "First Impression" },
-  { src: galleryInterior,   alt: "Lounge interior",            category: "First Impression" },
+  { src: galleryInterior,   alt: "Fine selection",            category: "First Impression" },
   { src: galleryFood1,      alt: "Signature dish",             category: "Dining"           },
   { src: galleryFood2,      alt: "Chef's selection",           category: "Dining"           },
   { src: galleryCocktail,   alt: "Cocktail preparation",       category: "Cocktails"        },
   { src: galleryDrinks,     alt: "Signature drinks",           category: "Cocktails"        },
-  { src: galleryAtmosphere, alt: "Guests enjoying the lounge", category: "Atmosphere"       },
-  { src: galleryNightlife,  alt: "DJ night energy",            category: "Nightlife"        },
+  // { src: galleryAtmosphere, alt: "Guests enjoying the lounge", category: "Atmosphere"       },
+  // { src: galleryNightlife,  alt: "DJ night energy",            category: "Nightlife"        },
 ];
 
 // ─── HORIZONTAL PARALLELOGRAM ─────────────────────────────────────────────

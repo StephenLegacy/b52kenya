@@ -49,13 +49,13 @@ const Footer = () => {
                 +254 715 000 010
               </a>
               <a
-                href="https://instagram.com/b52bistro"
+                href="https://instagram.com/b52_bistro"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 hover:text-primary transition-colors mt-2"
               >
                 <Instagram size={16} />
-                @b52bistro
+                @b52_bistro
               </a>
             </div>
           </div>
