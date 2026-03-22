@@ -567,7 +567,7 @@ const Navbar = () => {
                 B52 Bistro · Nairobi
               </span>
               <span className="text-[10px] tracking-[0.15em] uppercase text-white/15 font-label">
-                Est. 2020
+                Est. 2026
               </span>
             </motion.div>
           </motion.div>
