@@ -74,7 +74,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
@@ -82,7 +82,7 @@ const HeroSection = () => {
       >
         <span className="font-label text-[10px] text-muted-foreground">Scroll</span>
         <ChevronDown size={16} className="text-primary animate-scroll-bounce" />
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 };
