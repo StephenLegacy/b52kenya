@@ -1,6 +1,29 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { MapPin, Phone, Clock, Instagram, ExternalLink } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+
+/* ─────────────────────────────────────────────
+   Is B52 open right now?
+   Hours: Daily 08:00 – 03:00 (next day)
+   ───────────────────────────────────────────── */
+const useIsOpen = () => {
+  const check = () => {
+    // Use Nairobi time (EAT = UTC+3)
+    const now = new Date();
+    const eat = new Date(now.toLocaleString("en-US", { timeZone: "Africa/Nairobi" }));
+    const h = eat.getHours();
+    const m = eat.getMinutes();
+    const mins = h * 60 + m;
+    // Open: 08:00 (480) through midnight (1440) OR midnight through 03:00 (180)
+    return mins >= 480 || mins < 180;
+  };
+  const [isOpen, setIsOpen] = useState(check);
+  useEffect(() => {
+    const id = setInterval(() => setIsOpen(check()), 60_000);
+    return () => clearInterval(id);
+  }, []);
+  return isOpen;
+};
 
 /* ─────────────────────────────────────────────
    Tilt card – follows cursor on hover
@@ -110,6 +133,7 @@ const InfoRow = ({
    ───────────────────────────────────────────── */
 const ContactSection = () => {
   const [mapLoaded, setMapLoaded] = useState(false);
+  const isOpen = useIsOpen();
 
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
@@ -197,21 +221,34 @@ const ContactSection = () => {
               </a>
             </InfoRow>
 
-            {/* pulsing "open now" badge */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="mt-6 ml-5 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 w-fit"
+              className="mt-6 ml-5 inline-flex items-center gap-2 px-4 py-2 rounded-full border w-fit transition-colors duration-500"
+              style={{
+                borderColor: isOpen ? "hsl(var(--primary) / 0.35)" : "hsl(0 60% 50% / 0.35)",
+                background: isOpen ? "hsl(var(--primary) / 0.07)" : "hsl(0 60% 50% / 0.07)",
+              }}
             >
-              {/* pulsing dot */}
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                {isOpen && (
+                  <span
+                    className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                    style={{ backgroundColor: "hsl(var(--primary))" }}
+                  />
+                )}
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2"
+                  style={{ backgroundColor: isOpen ? "hsl(var(--primary))" : "hsl(0 60% 50%)" }}
+                />
               </span>
-              <span className="text-xs font-label text-primary tracking-wider uppercase">
-                Open Now
+              <span
+                className="text-xs font-label tracking-wider uppercase transition-colors duration-500"
+                style={{ color: isOpen ? "hsl(var(--primary))" : "hsl(0 60% 50%)" }}
+              >
+                {isOpen ? "Open Now" : "Closed · Opens 8 AM"}
               </span>
             </motion.div>
           </TiltCard>
@@ -232,18 +269,33 @@ const ContactSection = () => {
                 "0 0 0 1px hsl(var(--primary) / 0.15), 0 20px 60px -12px hsl(var(--primary) / 0.25)",
             }}
           >
-            {/* animated gradient border shimmer */}
-            <motion.div
-              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+            {/* SVG running border – a single line that traces the rounded rect */}
+            <svg
               aria-hidden
-              className="absolute inset-0 z-10 rounded-2xl pointer-events-none"
-              style={{
-                background:
-                  "linear-gradient(135deg, transparent 30%, hsl(var(--primary) / 0.35) 50%, transparent 70%)",
-                backgroundSize: "200% 200%",
-              }}
-            />
+              className="absolute inset-0 w-full h-full z-10 pointer-events-none rounded-2xl"
+              style={{ overflow: "visible" }}
+            >
+              <rect
+                x="1" y="1"
+                width="calc(100% - 2px)" height="calc(100% - 2px)"
+                rx="14" ry="14"
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="2"
+                strokeLinecap="round"
+                pathLength="1"
+                strokeDasharray="0.18 0.82"
+                style={{
+                  animation: "borderTrace 3.5s linear infinite",
+                }}
+              />
+              <style>{`
+                @keyframes borderTrace {
+                  from { stroke-dashoffset: 0; }
+                  to   { stroke-dashoffset: -1; }
+                }
+              `}</style>
+            </svg>
 
             {/* inner container */}
             <div className="relative w-full h-full rounded-[14px] overflow-hidden bg-background">
